@@ -73,10 +73,10 @@ Hangman.prototype.command = function(ircmsg) {
 	if (command === null || command !== "hm") {
 		return;
 	}
-    var param = ircmsg.getUserParam();
-    if (param === null) {
-        return;
-    }
+	var param = ircmsg.getUserParam();
+    	if (param === null) {
+        	return;
+    	}
 	var spacePos = param.indexOf(' ');
 	if (spacePos === -1) {
 		this.handleGameCommand(param, null, ircmsg.params[0], ircmsg.getNick());
@@ -108,7 +108,7 @@ Hangman.prototype.removeGame = function(channel) {
 }
 
 Hangman.prototype.handleGameCommand = function(command, param, channel, nick) {
-    if (command === 'start') {
+    	if (command === 'start') {
 		if (this.getGame(channel)) {
 			this.ircbot.writeIrcMessage(null, 'PRIVMSG', channel, 'A game is already going on in this channel!');
 			return;

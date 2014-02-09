@@ -16,7 +16,7 @@ function Card(num, color, special) {
 			return COLOR[self.color] + ' ' + SPECIAL[self.special];
 		}
 		return COLOR[self.color] + ' ' + self.num;
-	}
+	};
 }
 
 function Deck() {
@@ -28,7 +28,7 @@ function Deck() {
 		for (var i = 0; i < amount; i++) {
 			self.cards.push(card);
 		}
-	}
+	};
 
 	this.removeCard = function (rCard) {
 		self.cards = self.cards.reduce(function (acc, card) {
@@ -38,7 +38,7 @@ function Deck() {
 				return acc.concat(card);
 			}
 		}, []);
-	}
+	};
 
 	this.createDeck = function() {
 		//add cards 0 through 9 of all colors
@@ -58,14 +58,14 @@ function Deck() {
 		//add wild cards
 		self.addCard(new Card(null, null, SPECIAL.length - 2), 4);
 		self.addCard(new Card(null, null, SPECIAL.length - 1), 4);
-	}
+	};
 
 	this.drawCard = function() {
 		var index = Math.floor(Math.random() * self.cards.length);
 		var card = self.cards[index];
 		self.removeCard(card);
 		return card;
-	}
+	};
 
 	this.toString = function() {
 		var output = '';
@@ -74,7 +74,7 @@ function Deck() {
 		}
 		output = output + self.cards[self.cards.length - 1].toString();
 		return output;
-	}
+	};
 }
 
 function Player(nick) {
@@ -88,7 +88,7 @@ function Player(nick) {
 		for (var i = 0; i < self.HAND_SIZE; i++) {
 			self.hand.addCard(deck.drawCard());
 		}
-	}
+	};
 
 }
 
@@ -108,7 +108,7 @@ function Game(channel) {
 		for (var i = 0; i < len; i++) {
 			self.players[i].createHand();
 		}
-	}
+	};
 	
 	this.addPlayer = function (nick) {
 		var player = new Player(nick);
@@ -147,10 +147,10 @@ Uno.prototype.command = function(ircmsg) {
 	if (command === null || command !== "u") {
 		return;
 	}
-    var param = ircmsg.getUserParam();
-    if (param === null) {
-        return;
-    }
+    	var param = ircmsg.getUserParam();
+    	if (param === null) {
+        	return;
+    	}
 	var spacePos = param.indexOf(' ');
 	if (spacePos === -1) {
 		this.handleGameCommand(param, null, ircmsg.params[0], ircmsg.getNick());
